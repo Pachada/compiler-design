@@ -1,11 +1,12 @@
 /*
-  Falak compiler - Token class for the scanner.
-  Copyright (C) 2021 José Antonio Vázquez, Daniel Trejo y Jaime Orlando López. ITESM CEM
+    Falak compiler 
+    Copyright (C) 2021 José Antonio Vázquez, Daniel Trejo y Jaime Orlando López. ITESM CEM
 */
+namespace Falak
+{
 
-namespace Falak {
-
-    class Token {
+    class Token
+    {
 
         readonly string lexeme;
 
@@ -15,33 +16,41 @@ namespace Falak {
 
         readonly int column;
 
-        public string Lexeme {
+        public string Lexeme
+        {
             get { return lexeme; }
         }
 
-        public TokenCategory Category {
+        public TokenCategory Category
+        {
             get { return category; }
         }
 
-        public int Row {
+        public int Row
+        {
             get { return row; }
         }
 
-        public int Column {
+        public int Column
+        {
             get { return column; }
         }
 
-        public Token(string lexeme,
-                     TokenCategory category,
-                     int row,
-                     int column) {
+        public Token(
+            string lexeme,
+            TokenCategory category,
+            int row,
+            int column
+            )
+        {
             this.lexeme = lexeme;
             this.category = category;
             this.row = row;
             this.column = column;
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return $"{{{category}, \"{lexeme}\", @({row}, {column})}}";
         }
     }

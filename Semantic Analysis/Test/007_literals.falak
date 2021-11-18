@@ -9,6 +9,7 @@ var fails;
 assert(value1, value2, message) {
     if (value1 != value2) {
         inc fails;
+        var local;
         prints("Assertion failure: ");
         prints(message);
         println();

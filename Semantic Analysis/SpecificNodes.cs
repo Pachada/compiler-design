@@ -1,99 +1,100 @@
-namespace Falak {
+/*
+  Falak compiler - Token categories for the scanner.
+  Copyright (C) 2021 José Antonio Vázquez, Daniel Trejo y Jaime Orlando López. ITESM CEM
 
-  class Program: Node {}
+*/
 
-  class Var_Def: Node {}
+namespace Falak
+{
 
-  class Fun_Def: Node {}
+    class Program : Node { }
 
-  class Var_Def_List: Node {}
+    class DefList : Node { }
 
-  class StatementList: Node {}
+    class FunDef : Node { }
 
-  class StatementAssign: Node {}
+    class Var_DefList : Node { }
 
-  class StatementReturn: Node {}
+    class ParamList : Node { }
 
-  class StatementWhile: Node {}
+    class VarList : Node { }
 
-  class StatementDo: Node {}
+    class Var_Def : Node { }
 
-  class StatementIf: Node {}
+    class StatementList : Node { }
 
-  class Else_If: Node {}
+    class StatementAssign : Node { }
 
-  class Nested_Elseif: Node {}
+    class StatementInc : Node { }
 
-  class Node_Else: Node {}
-  
-  class StatementBreak: Node {}
+    class StatementDec : Node { }
 
-  class Op_Comp: Node {}
+    class StatementIf : Node { }
 
-  class Op_Rel: Node {}
+    class Else_If : Node { }
 
-  class Op_Mul: Node {}
+    class Node_Else : Node { }
 
-  class Op_Unary: Node {}
+    class StatementWhile : Node { }
 
-  class Unary: Node {}
+    class StatementDo : Node { }
 
-  class Fun_Call: Node {}
+    class StatementBreak : Node { }
 
-  class Expr_List: Node {}
+    class StatementReturn : Node { }
 
-  class Identifier: Node {}
+    class Empty : Node { }
 
-  class CharLit: Node {}
+    class Expr_List : Node { }
 
-  class Int_Literal: Node {}
+    class Or : Node { }
 
-  class True: Node {}
+    class Xor : Node { }
 
-  class False: Node {}
+    class And : Node { }
 
-  class String_Lit: Node {}
+    class Compare : Node { }
 
-  class Not: Node {}
+    class Different : Node { }
 
-  class And: Node {}
+    class More_Than : Node { }
 
-  class Or: Node {}
+    class More_Equal : Node { }
 
-  class More_Than: Node {}
+    class Less_Than : Node { }
 
-  class More_Equal: Node {}
+    class Less_Equal : Node { }
 
-  class Less_Than: Node {}
+    class Multiply : Node { }
 
-  class Less_Equal: Node {}
+    class Div : Node { }
 
-  class Different: Node {}
+    class Mod : Node { }
 
-  class Compare: Node {}
+    class Plus : Node { }
 
-  class StatementInc: Node {}
+    class Minus : Node { }
 
-  class StatementDec: Node {}
+    class Positive : Node { }
 
-  class StatementSemiColon: Node {}
+    class Negative : Node { }
 
-  class Plus: Node {}
+    class Not : Node { }
 
-  class Minus: Node {}
+    class Fun_Call : Node { }
 
-  class Multiply: Node {}
+    class Var_Refer : Node { }
 
-  class Div: Node {}
+    class True : Node { }
 
-  class Mod: Node {}
+    class False : Node { }
 
-  class Var_Refer: Node {}
+    class Int_Literal : Node { }
 
-  class Array: Node {}
+    class CharLit : Node { }
 
-  class Id_List: Node {} 
+    class String_Lit : Node { }
 
-  class Param_List: Node {}
+    class Array : Node { }
 
 }

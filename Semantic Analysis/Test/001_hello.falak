@@ -3,8 +3,7 @@
    (C) 2021 Ariel Ortiz, ITESM CEM.
 #>
 
-
 main() {
-    # Comment
-    prints("hello, world\n");;;return 42;;; # asdjasdjoia
+    prints("hello, world\n");;;
+    return 42;;;
 }

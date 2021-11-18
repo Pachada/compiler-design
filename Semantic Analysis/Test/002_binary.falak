@@ -6,20 +6,20 @@
 # Inverts in-place the contents of an array list.
 reverse(array) {
     var start, finish, temp;
-    start = 0;
+    start = -5;
     finish = size(array) - 1;
     while (start < finish) {
         temp = get(array, start);
         set(array, start, get(array, finish));
         set(array, finish, temp);
-        #inc start;
-        #dec finish;
+        inc start;
+        dec finish;
     }
 }
 
 # Converts num to a string with its binary representation.
 binary(num) {
-    var result, remainder;
+    var result, remainder, option;
     if (num <= 0) {
         return "0";
     }

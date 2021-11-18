@@ -1,23 +1,34 @@
+/*
+    Falak compiler 
+    Copyright (C) 2021 José Antonio Vázquez, Daniel Trejo y Jaime Orlando López. ITESM CEM
+*/
+
+
 using System;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Falak {
+namespace Falak
+{
 
-    public class Driver {
+    public class Driver
+    {
 
-        const string VERSION = "3.0.0";
+        const string VERSION = "4.0.0";
 
-        //-----------------------------------------------------------
+
         static readonly string[] ReleaseIncludes = {
             "Lexical analysis",
-            "Syntactic analysis",
-            "AST construction",
+            "Syntatic analysis",
+            "AST Construction",
             "Semantic analysis"
         };
 
-        //-----------------------------------------------------------
-        void PrintAppHeader() {
+
+        void PrintAppHeader()
+        {
             Console.WriteLine("Falak compiler, version " + VERSION);
             Console.WriteLine(
                 "Copyright \u00A9 2021, ITESM CEM.");
@@ -28,29 +39,34 @@ namespace Falak {
             Console.WriteLine("This program has absolutely no warranty.");
         }
 
-        //-----------------------------------------------------------
-        void PrintReleaseIncludes() {
+
+        void PrintReleaseIncludes()
+        {
             Console.WriteLine("Included in this release:");
-            foreach (var phase in ReleaseIncludes) {
+            foreach (var phase in ReleaseIncludes)
+            {
                 Console.WriteLine("   * " + phase);
             }
         }
 
-        //-----------------------------------------------------------
-        void Run(string[] args) {
+
+        void Run(string[] args)
+        {
 
             PrintAppHeader();
             Console.WriteLine();
             PrintReleaseIncludes();
             Console.WriteLine();
 
-            if (args.Length != 1) {
+            if (args.Length != 1)
+            {
                 Console.Error.WriteLine(
                     "Please specify the name of the input file.");
                 Environment.Exit(1);
             }
 
-            try {
+            try
+            {
                 var inputPath = args[0];
                 var input = File.ReadAllText(inputPath);
                 var parser = new Parser(
@@ -59,35 +75,58 @@ namespace Falak {
                 Console.WriteLine("Syntax is OKEY");
 
                 var semantic = new SemanticVisitor();
-                semantic.Visit((dynamic) program);
+                semantic.Visit((dynamic)program);
 
-                Console.WriteLine(" Semantics is OKEY");
+                Console.WriteLine("Semantics is OKEY");
                 Console.WriteLine();
-                Console.WriteLine(semantic.globalTable.ToString());
+                Console.WriteLine("Function Table");
+                Console.WriteLine("-*-*-*-*-*-*-*-*-*-*");
+                foreach (var entry in semantic.GlobalFunctionTable)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(entry.Key);
+                    if (entry.Value.getLocalTable().Any())
+                    {
 
-                Console.WriteLine();
+                        Console.WriteLine("Local Table");
+                        Console.WriteLine("-*-*-*-*-*-*-*-*-*-*");
 
-                Console.WriteLine(semantic.funTable.ToString());
-
-                foreach (var entry in semantic.localSymbol) {
-                    Console.WriteLine("-*-*-*-*-*-*-*-*-*-*");
-                    Console.WriteLine(" " + entry.Key + " Local Table");
-                    Console.WriteLine(entry.Value.ToString());
+                        foreach (var variable in entry.Value.getLocalTable())
+                        {
+                            Console.WriteLine(variable);
+                        }
+                        Console.WriteLine();
+                        
+                    }                   
                 }
 
-            } catch (Exception e) {
+                Console.WriteLine();
+                Console.WriteLine("Global Variable Table");
+                Console.WriteLine("-*-*-*-*-*-*-*-*-*-*");
+                foreach (var entry in semantic.GlobalVariableTable)
+                {
+                    Console.WriteLine(entry);
+                }
 
-                if (e is FileNotFoundException || e is SyntaxError || e is SemanticError) {
+
+            }
+            catch (Exception e)
+            {
+
+                if (e is FileNotFoundException || e is SyntaxError || e is SemanticError)
+                {
                     Console.Error.WriteLine(e.Message);
                     Environment.Exit(1);
                 }
 
                 throw;
             }
+
         }
 
-        //-----------------------------------------------------------
-        public static void Main(string[] args) {
+
+        public static void Main(string[] args)
+        {
             new Driver().Run(args);
         }
     }
